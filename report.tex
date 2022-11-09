@@ -12,7 +12,7 @@
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
 
-% Magic
+% Graphs
 \usepackage{pgfplots}
 \pgfplotsset{width=10cm,compat=1.9}
 \usepgfplotslibrary{external}
@@ -31,9 +31,12 @@
 
 \section{Introduction}
 
+% PROMPT
 % This section will introduce your project, your business, specific Use Case and potential source of a dataset for analysis.
 
+% NOTES
 % The business I have chosen is healthcare
+
 Data science applies different methods, both qualitative and quantitative, in order to solve relevant problems and make predictions \parencite[78]{Waller2013}.
 One industry that can benefit from the applications of data science is the healthcare industry.
 According to the \textcite{oecd2010health}, improving productivity in the healthcare sector translates to public spending savings.
@@ -48,7 +51,27 @@ It will review in detail the process of data analysis, from locating a data sour
 
 \section{Critical Discussion of the Application}
 
+% PROMPT
+% This section will relate specifically to your business and Use Case and their approach or potential application for the use of data science.
+% This will cover the challenge of acquiring or using specific data sources for your Use Case, approaches to data processing, description of proposed machine learning  algorithms and their design, opportunities for data visualisation and the methods for analysing/interpreting the data required to gain business competitive advantage.
 
+\subsection{Data sources}
+
+There exist several limitations to the data freely available for analysis.
+As \textcite[2]{Dalianis2015} points out, this is mainly due to the existence of sensitive data about patients in medical records.
+A cross-sectional survey found that the two biggest perceived obstacles towards obtaining healthcare data were conflicts of laws and data standardization \parencite{Kim2019}.
+Regulatory requirements, namely the General Data Privacy Regulation (GDPR) in the European Union and the Health Insurance Portability and Accountability Act (HIPAA) in the U.S., protect data that can be used to identify a patient \parencite{Iyengar2018}.
+GDPR requires explicit consent of the subject to process personal data. Obtaining said consent results impractical in big data analytics, where it is necessary to process several terabytes worth of data \parencite{Hintze2018}.
+
+However, there are other criteria which can allow data to be processed for purposes such as research and analysis.
+This criteria calls for 'appropiate safeguards' to be in place, which includes encryption and pseudonymisation \parencite[151]{Hintze2018}.
+Pseudonymisation is a way to de-identify information, and consists of replacing or removing direct identifiers, such as names, phone numbers, and other data points that could be directly attributed to a particular subject \parencite[146-147]{Hintze2018}.
+\textcite{Kim2019} revealed that almost half (45.8\%) of all participants in a survey indicated that a revision in legislation was necessary to reduce obstacles when using healthcare data.
+
+
+% However, a way to get around patient confidentiality is to de-identify records 
+% NOTES
+% Where to find this data? What issues may we have?
 
 \section{Critical Evaluation of the case for or against uptake of such Technology}
 \section{Conclusions and Recommendations}
