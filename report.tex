@@ -1,5 +1,8 @@
 \documentclass[a4paper,12pt]{article}
 
+% Links
+\usepackage{hyperref}
+
 % Code
 \usepackage{minted}
 
@@ -55,7 +58,9 @@ It will review in detail the process of data analysis, from locating a data sour
 % This section will relate specifically to your business and Use Case and their approach or potential application for the use of data science.
 % This will cover the challenge of acquiring or using specific data sources for your Use Case, approaches to data processing, description of proposed machine learning  algorithms and their design, opportunities for data visualisation and the methods for analysing/interpreting the data required to gain business competitive advantage.
 
-\subsection{Data sources}
+\subsection{Data sourcing}
+
+\subsubsection{Privacy concerns}
 
 There exist several limitations to the data freely available for analysis.
 As \textcite[2]{Dalianis2015} points out, this is mainly due to the existence of sensitive data about patients in medical records.
@@ -64,16 +69,44 @@ Regulatory requirements, namely the General Data Privacy Regulation (GDPR) in th
 GDPR requires explicit consent of the subject to process personal data. Obtaining said consent results impractical in big data analytics, where it is necessary to process several terabytes worth of data \parencite{Hintze2018}.
 
 However, there are other criteria which can allow data to be processed for purposes such as research and analysis.
-This criteria calls for 'appropiate safeguards' to be in place, which includes encryption and pseudonymisation \parencite[151]{Hintze2018}.
+This criteria calls for \textquote{appropiate safeguards} to be in place, which includes encryption and pseudonymisation \parencite[151]{Hintze2018}.
 Pseudonymisation is a way to de-identify information, and consists of replacing or removing direct identifiers, such as names, phone numbers, and other data points that could be directly attributed to a particular subject \parencite[146-147]{Hintze2018}.
-\textcite{Kim2019} revealed that almost half (45.8\%) of all participants in a survey indicated that a revision in legislation was necessary to reduce obstacles when using healthcare data.
+Due to the large amounts of data present in health records, de-identification should ideally be automated.
+\textcite{Dernoncourt2016} described an automated de-identification technique using neural networks, that achieved 97\%+ precision on different datasets.
+However, no method is perfect and this is still a limiting factor in healthcare data availability.
+Furthermore, some debate exists about the need for strict de-identification, and how it can affect the availability of data.
+\textcite[2]{Shin2018} argues that de-identification can lead to a distortion and loss of detailed data, which can greatly impact the results of a study.
+Likewise, \textcite{Kim2019} revealed that almost half (45.8\%) of all participants in a survey thought that a revision in legislation was necessary to reduce obstacles when using healthcare data.
+However, it is important to remember that big data analytics can still have consequences for individuals.
+Some de-identification methods are vulnerable to correlation attacks, which can identify individuals through indirect identifiers \parencite{Abouelmehdi2018}.
+As \textcite{Abouelmehdi2018} points out, analytics should verify privacy agreements are respected, and sensitive information should remain private.
+
+\subsubsection{Processing concerns}
+
+In addition to the legal issues, there is another major obstacle when using healthcare data.
+This comes in the form of data processing problems, specially with clinical notes, since these can contain misspelled words, medical jargon, and non-standard words \parencite{Dalianis2015}.
+% \textcite{} found that
 
 
-% However, a way to get around patient confidentiality is to de-identify records 
+\subsubsection{Healthcare data sources}
+
+Despite the many difficulties that exist in making healthcare data ready for research purposes, some de-identified datasets have been made available online.
+\textcite{Dalianis2015} mentions a few, including the \textit{i2b2} corpus\footnote{Nowadays known as \textit{n2c2}}, the \textit{CMC} corpus, the \textit{MIMIC II} database, and the \textit{THIN} database. \textit{MIMIC III} \parencite{Johnson2016} is another database available for research.
+Finally, some governments partake in releasing healthcare datasets for research, such as the \textit{Open Government Initiative} of the United States government \parencite{Marc2015}, which operates the website HealthData.gov\footnote{\url{https://healthdata.gov}} for this purpose.
+
+\subsubsection{Data processing techniques}
+
+As aforementioned, one of the biggest challenges...
+
+\subsubsection{Predictive Algorithms}
 % NOTES
 % Where to find this data? What issues may we have?
 
 \section{Critical Evaluation of the case for or against uptake of such Technology}
+% PROMPT
+% You will evaluate the benefits or otherwise, including the challenges of applying machine learning algorithms, maintenance and ethical considerations of a data science model for business insight.
+
+
 \section{Conclusions and Recommendations}
 
 \printbibliography
