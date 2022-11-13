@@ -1,3 +1,7 @@
+% Jacob Sánchez Pérez (jacob@san.contact)
+% Data Science (CO3722)
+% University of Central Lancashire
+
 \documentclass[a4paper,12pt]{article}
 
 % Links
@@ -21,7 +25,7 @@
 \usepgfplotslibrary{external}
 \tikzexternalize
 
-\title{Disease Prediction with Data Science}
+\title{Predicting Diseases with Data Science}
 \author{Jacob Sánchez\\ University of Central Lancashire\\\texttt{jsanchez-perez@uclan.ac.uk}}
 \date{}
 
@@ -107,13 +111,20 @@ In particular, some techniques that might improve the quality of free-text data 
 \textcite{Jothi2015} outlined some of the classification algorithms commonly used in healthcare data analysis, briefly described here:
 
 \begin{description}
-    \item[Discriminant Analysis] ``
-    \item[Decision Tree] ``
-    \item[K-nearest Neighbour] ''
-    \item[Logistic Regression] ``
-    \item[Bayesian Classifier] ''
-    \item[Support Vector] ``
+    \item[Decision Tree] \textquote[{\cite[70]{Mueller2017}}]{They learn a hierarchy of if/else questions, leading to a decision}.
+    \item[K-nearest Neighbour] Stores the training dataset, then to make a prediction it \textquote[{\cite[35]{Mueller2017}}]{finds the closest data points in the training dataset}.
+    \item[Logistic Regression] Statistical model that \textquote{describes the relationship between a qualitative dependent variable and an independent variable}, making binary predictions \parencite{Nick2007}.
+    \item[Bayesian Classifier] Each feature is analysed individually, then, per-class statistics are collected for each feature. 
+    To make predictions, the \textquote[{\cite[69]{Mueller2017}}]{data point is compared to the statistics for each of the classes,
+and the best matching class is predicted}.
+    \item[Support Vector] It learns the importance of each training data point to \textquote[{\cite[98]{Mueller2017}}]{represent the decision boundary between two classes}.
+    From those, only the ones at the border between classes are necessary to define the decision boundary, these are the support vectors.
+    Classification is made based on the distances to the support vectors \parencite[98]{Mueller2017}.
 \end{description}
+
+\subsection{Training and Testing}
+
+\textcite[39]{Consoli2019} suggests using the \(k\)-fold cross-validation approach, in which the dataset is split into \(k\) parts, of which \(k-1\) parts are used to train the model, and the last one is used to test it, rotating in such a way that every part is used to test it once. 
 
 % ~450 words remaining
 
@@ -126,6 +137,7 @@ In particular, some techniques that might improve the quality of free-text data 
 
 \section{Conclusions and Recommendations}
 % ~150 words
+\pagebreak
 \printbibliography
 
 \end{document}
