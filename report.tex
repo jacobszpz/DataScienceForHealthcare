@@ -6,6 +6,11 @@
 
 % Links
 \usepackage{hyperref}
+\hypersetup{
+    hidelinks,
+    pdftitle={Predicting Diseases with Data Science},
+    pdfauthor={Jacob Sánchez}
+}
 
 % Code
 \usepackage{minted}
@@ -56,7 +61,7 @@ Areas in healthcare that could have the most impact from the application of data
 This report is centred around the application of data science to predict diseases.
 It will review in detail the process of data analysis, from locating a data source, processing the data, and finally visualising and interpreting the results.
 
-\section{Critical Discussion of the Application}
+\section{Data Science for Healthcare}
 
 % PROMPT
 % This section will relate specifically to your business and Use Case and their approach or potential application for the use of data science.
@@ -64,11 +69,12 @@ It will review in detail the process of data analysis, from locating a data sour
 
 \subsection{Data Sourcing}
 
-\subsubsection{Privacy Concerns}
-
 There exist several limitations to the data freely available for analysis.
 As \textcite[2]{Dalianis2015} points out, this is mainly due to the existence of sensitive data about patients in medical records.
 A cross-sectional survey found that the two biggest perceived obstacles towards obtaining healthcare data were conflicts of laws and data standardization \parencite{Kim2019}.
+
+\subsubsection{Privacy Concerns}
+
 Regulatory requirements, namely the General Data Privacy Regulation (GDPR) in the European Union and the Health Insurance Portability and Accountability Act (HIPAA) in the U.S., protect data that can be used to identify a patient \parencite{Iyengar2018}.
 GDPR requires explicit consent of the subject to process personal data. Obtaining said consent results impractical in big data analytics, where it is necessary to process several terabytes worth of data \parencite{Hintze2018}.
 
@@ -154,7 +160,7 @@ and the best matching class is predicted}.
 \end{description}
 
 
-Finally, another common approach in healthcare data analysis is Deep Learning, which encompasses several techniques that vary in complexity and design \parencite{Ibrahim2021}.
+Finally, another common approach in healthcare data analysis is Deep Learning, which encompasses several techniques that vary in complexity and design \parencite{Ibrahim2021}. Some deep learning architectures are:
 
 \begin{itemize}
  \item Convolutional Neural Networks (CNN)
@@ -181,6 +187,9 @@ Transparency and lack of bias are desirable qualities in a visualisation techniq
 
 
 \section{Conclusions and Recommendations}
+
+Data Science has come a long way thanks to the advances in Machine Learning and Artificial Intelligence of the last few decades. The amount of literature that deals with analysis of healthcare data is vast, and covers technical areas such as sourcing, processing, cleaning, machine learning algorithms, deep learning, visualisation, and much more. These body of knowledge, along with current technology and tools make it possible to imagine a future where hospitals, researchers, and scientists harness their full potential.
+
 % ~150 words
 \pagebreak
 \printbibliography
