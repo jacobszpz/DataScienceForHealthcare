@@ -139,7 +139,7 @@ Finally, deep learning involves a series of layers that process the data and fee
 \subsection{Predictive Algorithms}
 
 
-\textcite{Jothi2015} outlined some of the classification algorithms commonly used in healthcare data analysis, briefly described here:
+\textcite{Jothi2015} outlined some of the classification algorithms commonly used in healthcare data analysis, briefly described next. All of them need exclusively labelled data and are thus considered supervised learning algorithms.
 
 \begin{description}
     \item[Decision Tree] \textquote[{\cite[70]{Mueller2017}}]{They learn a hierarchy of if/else questions, leading to a decision}.
@@ -153,10 +153,20 @@ and the best matching class is predicted}.
     Classification is made based on the distances to the support vectors \parencite[98]{Mueller2017}.
 \end{description}
 
+
+Finally, another common approach in healthcare data analysis is Deep Learning, which encompasses several techniques that vary in complexity and design \parencite{Ibrahim2021}.
+
+\begin{itemize}
+ \item Convolutional Neural Networks (CNN)
+ \item Recurrent Neural Networks (RNN)
+ \item Deep auto-encoders
+\end{itemize}
+
+
 \subsection{Training and Testing Approaches}
 
 The training and testing approach chosen when designing the model is of great importance, since it can affect the accuracy of the model.
-\textcite[39]{Consoli2019} suggests using the \(k\)-fold cross-validation approach, in which the dataset is split into \(k\) parts, of which \(k-1\) parts are used to train the model, and the last one is used to test it, rotating the data such that every part is used to test it once. \textcite{Wong2020} suggested 10-fold cross validation to be the best first approach, with 5-fold and 2-fold cross validation only being viable in circumstances where not enough elements exist in some fold (i.e. large-sample conditions are violated).
+\textcite[39]{Consoli2019} suggests using the \(k\)-fold cross-validation approach, in which the dataset is split into \(k\) parts, of which \(k-1\) parts are used to train the model, and the last one is used to test it, rotating the data such that every part is used to test it once. \textcite{Wong2020} suggested 10-fold cross validation to be the best first approach, with 5-fold and 2-fold cross validation only being viable in circumstances where not enough elements exist in some fold (i.e. large-sample conditions are violated). It is worth mentioning \textit{stratified k-fold cross-validation}, in which the data is split such that there are proportional amounts of items of each class in each fold \parencite{Mueller2017}.
 
 \subsection{Data Visualisation}
 
