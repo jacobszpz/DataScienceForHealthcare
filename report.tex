@@ -103,7 +103,38 @@ Finally, some governments partake in releasing healthcare datasets for research,
 
 De-identification techniques will not be covered here, since all of the data that can be obtained will have been de-identified beforehand.
 After de-identification, one of the biggest challenges with healthcare data is making sense of it.
-In particular, some techniques that might improve the quality of free-text data may include detection of negation and spelling mistakes, abbreviation normalisation, and named entity recognition \parencite{Dalianis2015}.
+
+\subsubsection{Data Cleaning}
+
+Before attempting to perform any data analytics, it is a good idea to verify the integrity and quality of the dataset. Factors that can affect the quality of a dataset include: missing values, misspellings, duplicates, and mixed formats \parencite{Chu2016}. These can present themselves as outliers, values that are more than two standard deviations away from the mean \parencite{Hellerstein2008}. \textcite{Hellerstein2008} mentions robust estimators, resampling, and exploratory data analysis as ways to detect outliers in order to improve the data quality. While this may account for quantitative data, such as integers and floating point numbers, categorical variables must also be taken care of. Categorical data are words or names that \textquote[{\cite{Hellerstein2008}}]{assign data into categories or groups}, such as \textquote{dog} and \textquote{canine}.
+While this is usually handled by deduplication, \textcite{Cerda2018} described an approach that encodes the similarity between categories, showing gains in performance.
+
+\subsubsection{Text and Strings Specifics}
+
+One of the most common ways to represent text for machine learning purposes is called \textit{bag-of-words}.
+It consists of keeping a record of every unique word in the text, along with the number of times it is used.
+Everything else, such as structure, formatting, and punctuation is discarded \parencite[327]{Mueller2017}.
+There are additional measures that can improve the quality of data such as \textit{stopwords} (discarding frequent words) \parencite[327-336]{Mueller2017}, and \textit{term frequency–inverse document frequency} (rescale features by their expected importance);
+as well as ways to improve the \textit{bag-of-words} technique, such as n-grams, stemming and lemmatization \parencite[339,344]{Mueller2017}.
+
+In healthcare, some techniques that might improve the quality of free-text data may include detection of negation and spelling mistakes, abbreviation normalisation, and named entity recognition \parencite{Dalianis2015}.
+
+\subsection{Machine Learning}
+
+Before investigating the different algorithms that can be used to analyse data, a quick distinction should be drawn between different types of machine learning algorithms.
+
+\begin{itemize}
+ \item Supervised Learning
+ \item Unsupervised Learning
+ \item Semisupervised Learning
+ \item Reinforcement Learning
+ \item Deep Learning
+\end{itemize}
+
+Supervised learning happens when the model is trained on labelled data, that is, data that has been classified beforehand.
+Conversely, in unsupervised learning all data is unlabelled and the model deduces the structure from it. In semisupervised learning, data can be labelled or unlabelled.
+Reinforcement learning happens when the model is conditioned externally \parencite[11]{Ibrahim2021}.
+Finally, deep learning involves a series of layers that process the data and feed into one another \parencite[13]{Ibrahim2021}.
 
 \subsection{Predictive Algorithms}
 
