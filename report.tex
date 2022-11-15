@@ -62,9 +62,9 @@ It will review in detail the process of data analysis, from locating a data sour
 % This section will relate specifically to your business and Use Case and their approach or potential application for the use of data science.
 % This will cover the challenge of acquiring or using specific data sources for your Use Case, approaches to data processing, description of proposed machine learning  algorithms and their design, opportunities for data visualisation and the methods for analysing/interpreting the data required to gain business competitive advantage.
 
-\subsection{Data sourcing}
+\subsection{Data Sourcing}
 
-\subsubsection{Privacy concerns}
+\subsubsection{Privacy Concerns}
 
 There exist several limitations to the data freely available for analysis.
 As \textcite[2]{Dalianis2015} points out, this is mainly due to the existence of sensitive data about patients in medical records.
@@ -85,7 +85,7 @@ However, it is important to remember that big data analytics can still have cons
 Some de-identification methods are vulnerable to correlation attacks, which can identify individuals through indirect identifiers \parencite{Abouelmehdi2018}.
 As \textcite{Abouelmehdi2018} points out, analytics should verify privacy agreements are respected, and sensitive information should remain private.
 
-\subsubsection{Processing concerns}
+\subsubsection{Processing Concerns}
 
 In addition to the legal issues, there is another major obstacle when using healthcare data.
 This comes in the form of data processing problems, specially with clinical notes, since these can contain misspelled words, medical jargon, and non-standard words \parencite{Dalianis2015}.
@@ -93,13 +93,13 @@ In addition, data is oftentimes collected from systems with different and incomp
 Therefore some amount of preprocessing will need to take place before analysing the data.
 
 
-\subsubsection{Healthcare data sources}
+\subsubsection{Healthcare Data Sources}
 
 Despite the many difficulties that exist in making healthcare data ready for research purposes, some de-identified datasets have been made available online.
 \textcite{Dalianis2015} mentions a few, including the \textit{i2b2} corpus\footnote{Nowadays known as \textit{n2c2}}, the \textit{CMC} corpus, the \textit{MIMIC II} database, and the \textit{THIN} database. \textit{MIMIC III} \parencite{Johnson2016} is another database available for research.
 Finally, some governments partake in releasing healthcare datasets for research, such as the \textit{Open Government Initiative} of the United States government \parencite{Marc2015}, which operates the website HealthData.gov\footnote{\url{https://healthdata.gov}} for this purpose.
 
-\subsection{Data processing techniques}
+\subsection{Data Processing Techniques}
 
 De-identification techniques will not be covered here, since all of the data that can be obtained will have been de-identified beforehand.
 After de-identification, one of the biggest challenges with healthcare data is making sense of it.
@@ -122,11 +122,15 @@ and the best matching class is predicted}.
     Classification is made based on the distances to the support vectors \parencite[98]{Mueller2017}.
 \end{description}
 
-\subsection{Training and Testing}
+\subsection{Training and Testing Approaches}
 
-\textcite[39]{Consoli2019} suggests using the \(k\)-fold cross-validation approach, in which the dataset is split into \(k\) parts, of which \(k-1\) parts are used to train the model, and the last one is used to test it, rotating in such a way that every part is used to test it once. 
+The training and testing approach chosen when designing the model is of great importance, since it can affect the accuracy of the model.
+\textcite[39]{Consoli2019} suggests using the \(k\)-fold cross-validation approach, in which the dataset is split into \(k\) parts, of which \(k-1\) parts are used to train the model, and the last one is used to test it, rotating the data such that every part is used to test it once. \textcite{Wong2020} suggested 10-fold cross validation to be the best first approach, with 5-fold and 2-fold cross validation only being viable in circumstances where not enough elements exist in some fold (i.e. large-sample conditions are violated).
 
-% ~450 words remaining
+\subsection{Data Visualisation}
+
+The way results are represented is important, since visualisations can make patterns apparent and provide insights that can alter the final decision \parencite{Hendriks2019}.
+Transparency and lack of bias are desirable qualities in a visualisation technique \parencite{Hendriks2019}.
 
 \section{Critical Evaluation of the case for or against uptake of such Technology}
 
