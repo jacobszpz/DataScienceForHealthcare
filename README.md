@@ -48,6 +48,15 @@ $ pdflatex -shell-escape report.tex
 
 
 
+##### to Word document
+
+```bash
+# Conversion is not perfect and still requires tweaks
+$ pandoc report.tex -f latex -t docx -o report.docx --bibliography=references.bib
+```
+
+
+
 ## License
 
 ![GPLv2][license-badge]
