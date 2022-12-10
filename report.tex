@@ -1,3 +1,4 @@
+% Predicting Diseases with Data Science
 % Jacob Sánchez Pérez (jacob@san.contact)
 % Data Science (CO3722)
 % University of Central Lancashire
@@ -6,6 +7,8 @@
 
 % Links
 \usepackage{hyperref}
+
+% PDF Metadata
 \hypersetup{
     hidelinks,
     pdftitle={Predicting Diseases with Data Science},
@@ -31,7 +34,7 @@
 \tikzexternalize
 
 \title{Predicting Diseases with Data Science}
-\author{Jacob Sánchez\\ University of Central Lancashire\\\texttt{jsanchez-perez@uclan.ac.uk}}
+\author{Jacob Sánchez Pérez\\ University of Central Lancashire\\\texttt{jsanchez-perez@uclan.ac.uk}}
 \date{}
 
 \addbibresource{references.bib}
@@ -67,7 +70,7 @@ It will review in detail the process of data analysis, from locating a data sour
 % This section will relate specifically to your business and Use Case and their approach or potential application for the use of data science.
 % This will cover the challenge of acquiring or using specific data sources for your Use Case, approaches to data processing, description of proposed machine learning  algorithms and their design, opportunities for data visualisation and the methods for analysing/interpreting the data required to gain business competitive advantage.
 
-\subsection{Data Sourcing}
+\subsection{Challenges}
 
 There exist several limitations to the data freely available for analysis.
 As \textcite[2]{Dalianis2015} points out, this is mainly due to the existence of sensitive data about patients in medical records.
@@ -98,16 +101,54 @@ This comes in the form of data processing problems, specially with clinical note
 In addition, data is oftentimes collected from systems with different and incompatible formats \parencite[34]{Consoli2019}.
 Therefore some amount of preprocessing will need to take place before analysing the data.
 
+\subsection{Data Sourcing}
 
 \subsubsection{Healthcare Data Sources}
 
-Despite the many difficulties that exist in making healthcare data ready for research purposes, some de-identified datasets have been made available online.
-\textcite{Dalianis2015} mentions a few, including the \textit{i2b2} corpus\footnote{Nowadays known as \textit{n2c2}}, the \textit{CMC} corpus, the \textit{MIMIC II} database, and the \textit{THIN} database. \textit{MIMIC III} \parencite{Johnson2016} is another database available for research.
-Finally, some governments partake in releasing healthcare datasets for research, such as the \textit{Open Government Initiative} of the United States government \parencite{Marc2015}, which operates the website HealthData.gov\footnote{\url{https://healthdata.gov}} for this purpose.
+Despite the many difficulties that exist in making healthcare data ready for research purposes,
+some de-identified datasets have been made available online.
+\textcite{Dalianis2015} mentions a few, listed below.
+
+\paragraph{MIMIC-II} A collection of data from ICU patients,
+spanning 7 years and ~27,000 patient admissions.
+The dataset contains patient demographics, intravenous medication drip rates,
+laboratory test results, physiological waveforms and vital signs recorded at bedside.
+The dataset can be accessed after registration free of charge \parencite{Lee2011}.
+
+\paragraph{MIMIC-III} A successor to the \textit{MIMIC-II} dataset,
+it contains more than a decade and 50k+ patient admissions worth of data.
+It contains a wide range of data including demographics, notes and reports,
+tests, along with bedside monitoring data.
+As its predecessor, it has an open access policy \parencite{Johnson2016}.
+
+\paragraph{THIN} It is an ongoing data collection system which starts at 1994,
+and represents 6\% of the UK population.
+It contains records from general practices.
+The dataset can only be accessed by those with special authorisation,
+such as research organisations \parencite{Lewis2007}.
+
+\paragraph{n2c2} Formerly known as \textit{i2b2} , it is a collection of datasets
+of topics including smoking, obesity, medication, heart disease and psychiatry,
+each with thousands of records.
+The dataset requires registration and access request approval, yet is free of cost.
+
+\medskip
+Additionally, there are many other websites dedicated to the publication of open
+access healthcare datasets, for instance:
+
+\paragraph{HealthData.gov} The United States government operates the website HealthData.gov\footnote{\url{https://healthdata.gov}} through the
+\textit{Open Government Initiative} \parencite{Marc2015}, for general purpose
+healthcare-related datasets.
+
+\subsubsection{Dataset Choice}
+
+For the purpose of this report, the \textit{n2c2} dataset was chosen, 
+
 
 \subsection{Data Processing Techniques}
 
-De-identification techniques will not be covered here, since all of the data that can be obtained will have been de-identified beforehand.
+De-identification techniques will not be covered here,
+since all of the data that can be obtained will have been de-identified beforehand.
 After de-identification, one of the biggest challenges with healthcare data is making sense of it.
 
 \subsubsection{Data Cleaning}

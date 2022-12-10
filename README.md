@@ -20,12 +20,6 @@ The area of business chosen was the **healthcare** industry and the specific use
 
 
 
-## Authorship
-
-**Jacob Sanchez Perez \<jsanchez-perez@uclan.ac.uk>**
-
-
-
 ## Building
 
 ##### latexmk
@@ -54,6 +48,12 @@ $ pdflatex -shell-escape report.tex
 # Conversion is not perfect and still requires tweaks
 $ pandoc report.tex -f latex -t docx -o report.docx --bibliography=references.bib
 ```
+
+
+
+## Authorship
+
+**Jacob Sanchez Perez \<jsanchez-perez@uclan.ac.uk>**
 
 
 
