@@ -1,4 +1,4 @@
-% Identifying Early Heart Disease Risk Factors with Data Science
+% A Discussion of Data Science in Healthcare
 % Jacob Sánchez Pérez (jacob@san.contact)
 % Data Science (CO3722)
 % University of Central Lancashire
@@ -11,7 +11,7 @@
 % PDF Metadata
 \hypersetup{
     hidelinks,
-    pdftitle={Identifying Early Heart Disease Risk Factors with Data Science},
+    pdftitle={A Discussion of Data Science in Healthcare},
     pdfauthor={Jacob Sánchez}
 }
 
@@ -33,7 +33,7 @@
 \usepgfplotslibrary{external}
 \tikzexternalize
 
-\title{Identifying Early Heart Disease Risk Factors with Data Science}
+\title{A Discussion of Data Science in Healthcare to Identify Disease Risk Factors}
 \author{Jacob Sánchez Pérez\\ University of Central Lancashire\\\texttt{jsanchez-perez@uclan.ac.uk}}
 \date{}
 
@@ -101,7 +101,8 @@ long as it is pseudonymised.
 Pseudonymisation (de-identification) consists of replacing or removing direct
 identifiers, such as names, phone numbers, and other identifying data \parencite{Hintze2018}.
 Nowadays, de-identification can be performed through neural networks \parencite{Dernoncourt2016}.
-However, no method is perfect and this is still a limiting factor in healthcare data availability.
+However, no method is perfect and this is still a limiting factor in healthcare
+data availability.
 
 \subsubsection{Processing Concerns}
 
@@ -181,23 +182,35 @@ However, for the specific task of de-identification of the dataset in question,
 
 \subsubsection{Data Cleaning}
 
-Before attempting to perform any data analytics, it is a good idea to verify the integrity and quality of the dataset. Factors that can affect the quality of a dataset include: missing values, misspellings, duplicates, and mixed formats \parencite{Chu2016}. These can present themselves as outliers, values that are more than two standard deviations away from the mean \parencite{Hellerstein2008}. \textcite{Hellerstein2008} mentions robust estimators, resampling, and exploratory data analysis as ways to detect outliers in order to improve the data quality. While this may account for quantitative data, such as integers and floating point numbers, categorical variables must also be taken care of. Categorical data are words or names that \textquote[{\cite{Hellerstein2008}}]{assign data into categories or groups}, such as \textquote{dog} and \textquote{canine}.
-While this is usually handled by deduplication, \textcite{Cerda2018} described an approach that encodes the similarity between categories, showing gains in performance.
+Before performing any analysis, the integrity and quality of the dataset needs
+to be assessed.
+Missing values, misspellings, duplicates, and mixed formats can affect the
+data quality \parencite{Chu2016}.
+These present themselves as outliers, values that are more than two standard
+deviations away from the mean.
+Robust estimators, resampling, and exploratory data analysis are some ways to
+detect them \parencite{Hellerstein2008}.
+Additionally, categorical variables such as words or names that represent a
+category or group can be handled by deduplication,
+though there are alternatives such as encoding the similarity between
+categories in the model itself \parencite{Cerda2018}.
 
 \subsubsection{Text and Strings Specifics}
 
-One of the most common ways to represent text for machine learning purposes is called \textit{bag-of-words}.
-It consists of keeping a record of every unique word in the text, along with the number of times it is used.
-Everything else, such as structure, formatting, and punctuation is discarded \parencite[327]{Mueller2017}.
-There are additional measures that can improve the quality of data such as \textit{stopwords} (discarding frequent words) \parencite[327-336]{Mueller2017}, and \textit{term frequency–inverse document frequency} (rescale features by their expected importance);
-as well as ways to improve the \textit{bag-of-words} technique, such as n-grams, stemming and lemmatization \parencite[339,344]{Mueller2017}.
+One of the most common ways to represent text in machine learning is a
+\textit{bag-of-words}.
+It stores every unique word in the text and the number of times it is mentioned.
+Everything else (structure, formatting, and punctuation) is discarded.
+Other techniques include \textit{stopwords} (discarding frequent words),
+and \textit{term frequency–inverse document frequency}
+(rescale features by their expected importance), n-grams,
+stemming, and lemmatization, among others \parencite[327,344]{Mueller2017}.
 
-Since patient records, such as the ones contained in the 
 In healthcare, some techniques that might improve the quality of free-text data may include detection of negation and spelling mistakes, abbreviation normalisation, and named entity recognition \parencite{Dalianis2015}.
 
 \subsection{Machine Learning}
 
-Before investigating the different algorithms that can be used to analyse data, a quick distinction should be drawn between different types of machine learning algorithms.
+Machine learning algorithms can be classified by how they are trained:
 
 \begin{itemize}
  \item Supervised Learning
@@ -207,29 +220,38 @@ Before investigating the different algorithms that can be used to analyse data, 
  \item Deep Learning
 \end{itemize}
 
-Supervised learning happens when the model is trained on labelled data, that is, data that has been classified beforehand.
-Conversely, in unsupervised learning all data is unlabelled and the model deduces the structure from it. In semisupervised learning, data can be labelled or unlabelled.
-Reinforcement learning happens when the model is conditioned externally \parencite[11]{Ibrahim2021}.
-Finally, deep learning involves a series of layers that process the data and feed into one another \parencite[13]{Ibrahim2021}.
+Supervised learning happens when the training data is labelled,
+i.e. has been classified beforehand.
+Unsupervised learning uses unlabelled data, which the model deduces a structure from.
+In semisupervised learning, some data is labelled and other unlabelled.
+Reinforcement learning conditions the model externally through feedback
+\parencite[11]{Ibrahim2021}.
+Lastly, deep learning involves a series of layers that process the data in series \parencite[13]{Ibrahim2021}.
 
 \subsection{Supervised Learning Algorithms}
 
-\textcite{Jothi2015} outlined some of the classification algorithms commonly used in healthcare data analysis, briefly described next. All of them need exclusively labelled data and are thus considered supervised learning algorithms.
+\textcite{Jothi2015} outlined some of the supervised learning algorithms
+commonly used in healthcare data analysis, briefly described next.
 
 \begin{description}
-    \item[Decision Tree] \textquote[{\cite[70]{Mueller2017}}]{They learn a hierarchy of if/else questions, leading to a decision}.
-    \item[K-nearest Neighbour] Stores the training dataset, then to make a prediction it \textquote[{\cite[35]{Mueller2017}}]{finds the closest data points in the training dataset}.
-    \item[Logistic Regression] Statistical model that \textquote{describes the relationship between a qualitative dependent variable and an independent variable}, making binary predictions \parencite{Nick2007}.
-    \item[Bayesian Classifier] Each feature is analysed individually, then, per-class statistics are collected for each feature. 
-    To make predictions, the \textquote[{\cite[69]{Mueller2017}}]{data point is compared to the statistics for each of the classes,
-and the best matching class is predicted}.
-    \item[Support Vector] It learns the importance of each training data point to \textquote[{\cite[98]{Mueller2017}}]{represent the decision boundary between two classes}.
-    From those, only the ones at the border between classes are necessary to define the decision boundary, these are the support vectors.
+    \item[Decision Tree] A hierarchy of if/else questions, that lead to a decision \parencite{Mueller2017}.
+    \item[K-nearest Neighbour] Returns the closest point in the training dataset
+    to make a prediction \parencite{Mueller2017}.
+    \item[Logistic Regression] Statistical technique that makes binary decisions
+    based on a logistic curve \parencite{Nick2007}.
+    \item[Bayesian Classifier] Each feature is analysed individually, then,
+    per-class statistics are collected for each feature. 
+    To make predictions, the \textquote[{\cite[69]{Mueller2017}}]{data point is
+    compared to the statistics for each of the classes,
+    and the best matching class is predicted}.
+    \item[Support Vector] Identifies those data points which exist between classes
+    (the support vectors) and from them a decision boundary is defined.
     Classification is made based on the distances to the support vectors \parencite[98]{Mueller2017}.
 \end{description}
 
 
-Finally, another common approach in healthcare data analysis is Deep Learning, which encompasses several techniques that vary in complexity and design \parencite{Ibrahim2021}. Some deep learning architectures are:
+Finally, Deep Learning encompasses several techniques that vary in complexity and design \parencite{Ibrahim2021}.
+Some deep learning architectures are:
 
 \begin{itemize}
  \item Convolutional Neural Networks (CNN)
