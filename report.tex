@@ -1,4 +1,4 @@
-% Predicting Diseases with Data Science
+% Identifying Early Heart Disease Risk Factors with Data Science
 % Jacob Sánchez Pérez (jacob@san.contact)
 % Data Science (CO3722)
 % University of Central Lancashire
@@ -11,7 +11,7 @@
 % PDF Metadata
 \hypersetup{
     hidelinks,
-    pdftitle={Predicting Diseases with Data Science},
+    pdftitle={Identifying Early Heart Disease Risk Factors with Data Science},
     pdfauthor={Jacob Sánchez}
 }
 
@@ -25,7 +25,7 @@
 
 % Images
 \usepackage{graphicx}
-\graphicspath{ {./images/} }
+\graphicspath{ {./figures/} }
 
 % Graphs
 \usepackage{pgfplots}
@@ -33,7 +33,7 @@
 \usepgfplotslibrary{external}
 \tikzexternalize
 
-\title{Predicting Diseases with Data Science}
+\title{Identifying Early Heart Disease Risk Factors with Data Science}
 \author{Jacob Sánchez Pérez\\ University of Central Lancashire\\\texttt{jsanchez-perez@uclan.ac.uk}}
 \date{}
 
@@ -52,17 +52,28 @@
 % NOTES
 % The business I have chosen is healthcare
 
-Data science applies different methods, both qualitative and quantitative, in order to solve relevant problems and make predictions \parencite[78]{Waller2013}.
-One industry that can benefit from the applications of data science is the healthcare industry.
-According to the \textcite{oecd2010health}, improving productivity in the healthcare sector translates to public spending savings.
-McKinsey estimated that data analytics can reduce healthcare expenses by \$300 B to \$450 B per year in the U.S. alone \parencite{Groves2013}.
-One way of improving healthcare is to utilise data science to process the massive amounts of electronic health records that exist \parencite{Dalianis2015}.
-Data collected in healthcare can come in the form of physician notes, medical records, patient scans, and patient sensor data (such as wearables) \parencite{Adam2017}.
-However, obtaining said data may present several challenges due to patient privacy. 
+Data science applies different methods in order to solve relevant problems and
+make predictions \parencite[78]{Waller2013}.
+One industry that can benefit from data science is the healthcare industry.
+By improving productivity, public spending can be significantly reduced \parencite{oecd2010health}.
+McKinsey estimated that data analytics can reduce healthcare expenses by up to
+\$450 billion annually in the U.S.\parencite{Groves2013}.
+Data science can be used to process the massive amounts of electronic health
+records that exist, including physician notes, medical records, patient scans,
+and patient sensor data \parencite{Adam2017, Dalianis2015}.
+However, this data is not readily available due to patient privacy.
+Areas in healthcare that could have the most impact include early detection of
+diseases, precision medicine, optimisation of workflows, value-based healthcare,
+infection prevention and control, and clinical research \parencite[9]{Consoli2019}.
 
-Areas in healthcare that could have the most impact from the application of data science include early detection of diseases, precision medicine, optimisation of workflows, value-based healthcare, infection prevention and control, and clinical research \parencite[9]{Consoli2019}.
-This report is centred around the application of data science to predict diseases.
-It will review in detail the process of data analysis, from locating a data source, processing the data, and finally visualising and interpreting the results.
+This report is centred around the application of data science to identify early
+risk factors of diseases.
+Prompt identification of risk factors of fatal diseases can be quite beneficial
+to the healthcare industry.
+For instance, Coronary Heart Disease (CHD) was found to have a total annual
+burden of £7.06 billion in the UK, the highest for any disease \parencite{Liu2002}.
+This report will review in detail the process of data analysis, from locating a
+data source, processing the data, and finally visualising and interpreting the results.
 
 \section{Data Science for Healthcare}
 
@@ -73,83 +84,100 @@ It will review in detail the process of data analysis, from locating a data sour
 \subsection{Challenges}
 
 There exist several limitations to the data freely available for analysis.
-As \textcite[2]{Dalianis2015} points out, this is mainly due to the existence of sensitive data about patients in medical records.
-A cross-sectional survey found that the two biggest perceived obstacles towards obtaining healthcare data were conflicts of laws and data standardization \parencite{Kim2019}.
+As \textcite[2]{Dalianis2015} points out, this is mainly due to sensitive data
+in medical records.
+A survey found that the two biggest perceived obstacles towards obtaining
+healthcare data were legal issues and data standardization \parencite{Kim2019}.
 
 \subsubsection{Privacy Concerns}
 
-Regulatory requirements, for instance, the General Data Privacy Regulation (GDPR) in the European Union and the Health Insurance Portability and Accountability Act (HIPAA) in the U.S., protect data that can be used to identify a patient \parencite{Iyengar2018}.
-GDPR requires explicit consent of the subject to process personal data. Obtaining said consent results impractical in big data analytics, where it is necessary to process several terabytes worth of data \parencite{Hintze2018}.
-
-However, there are other criteria which can allow data to be processed for purposes such as research and analysis.
-This criteria calls for \textquote{appropiate safeguards} to be in place, which includes encryption and pseudonymisation \parencite[151]{Hintze2018}.
-Pseudonymisation is a way to de-identify information, and consists of replacing or removing direct identifiers, such as names, phone numbers, and other data points that could be directly attributed to a particular subject \parencite[146-147]{Hintze2018}.
-Due to the large amounts of data present in health records, de-identification should ideally be automated.
-\textcite{Dernoncourt2016} described an automated de-identification technique using neural networks, that achieved 97\%+ precision on different datasets.
+The General Data Privacy Regulation (GDPR) in the E.U. and the Health Insurance
+Portability and Accountability Act (HIPAA) in the U.S., protect data that can
+identify a patient \parencite{Iyengar2018}.
+GDPR requires explicit consent of the subject to process personal data.
+Obtaining consent results impractical in big data analytics.
+However, data can be processed for purposes such as research and analysis as
+long as it is pseudonymised.
+Pseudonymisation (de-identification) consists of replacing or removing direct
+identifiers, such as names, phone numbers, and other identifying data \parencite{Hintze2018}.
+Nowadays, de-identification can be performed through neural networks \parencite{Dernoncourt2016}.
 However, no method is perfect and this is still a limiting factor in healthcare data availability.
-Furthermore, some debate exists about the need for strict de-identification, and how it can affect the availability of data.
-\textcite[2]{Shin2018} argues that de-identification can lead to a distortion and loss of detailed data, which can greatly impact the results of a study.
-Likewise, \textcite{Kim2019} revealed that almost half (45.8\%) of all participants in a survey thought that a revision in legislation was necessary to reduce obstacles when using healthcare data.
-However, it is important to remember that big data analytics can still have consequences for individuals.
-Some de-identification methods are vulnerable to correlation attacks, which can identify individuals through indirect identifiers \parencite{Abouelmehdi2018}.
-As \textcite{Abouelmehdi2018} points out, analytics should verify privacy agreements are respected, and sensitive information should remain private.
 
 \subsubsection{Processing Concerns}
 
-In addition to the legal issues, there is another major obstacle when using healthcare data.
-This comes in the form of data processing problems, specially with clinical notes, since these can contain misspelled words, medical jargon, and non-standard words \parencite{Dalianis2015}.
-In addition, data is oftentimes collected from systems with different and incompatible formats \parencite[34]{Consoli2019}.
-Therefore some amount of preprocessing will need to take place before analysing the data.
+In addition to the legal issues, data processing can be a major obstacle.
+In particular, clinical notes can contain misspelled words, medical jargon,
+and non-standard words \parencite{Dalianis2015}.
+Furthermore, data is oftentimes collected from systems with incompatible formats
+\parencite[34]{Consoli2019}.
+Therefore significant preprocessing will be necessary before analysing the data.
 
 \subsection{Data Sourcing}
 
 \subsubsection{Healthcare Data Sources}
 
-Despite the many difficulties that exist in making healthcare data ready for research purposes,
-some de-identified datasets have been made available online.
-\textcite{Dalianis2015} mentions a few, listed below.
+A selection of anonymised datasets that have been widely used in research due to
+their high availability and relaxed access policy are listed below \parencite{Dalianis2015}.
 
 \paragraph{MIMIC-II} A collection of data from ICU patients,
 spanning 7 years and ~27,000 patient admissions.
 The dataset contains patient demographics, intravenous medication drip rates,
-laboratory test results, physiological waveforms and vital signs recorded at bedside.
+laboratory test results, and physiological waveforms recorded at bedside.
 The dataset can be accessed after registration free of charge \parencite{Lee2011}.
 
-\paragraph{MIMIC-III} A successor to the \textit{MIMIC-II} dataset,
-it contains more than a decade and 50k+ patient admissions worth of data.
-It contains a wide range of data including demographics, notes and reports,
-tests, along with bedside monitoring data.
-As its predecessor, it has an open access policy \parencite{Johnson2016}.
+\paragraph{MIMIC-III} A successor to \textit{MIMIC-II}, it spans more than a
+decade and \textgreater 50k patient admissions.
+It contains demographics, notes and reports, tests, along with bedside monitoring data.
+As its predecessor, access merely requires registration \parencite{Johnson2016}.
 
-\paragraph{THIN} It is an ongoing data collection system which starts at 1994,
-and represents 6\% of the UK population.
+\paragraph{THIN} It is an ongoing dataset which begins in 1994, and represents
+6\% of the UK population.
 It contains records from general practices.
 The dataset can only be accessed by those with special authorisation,
 such as research organisations \parencite{Lewis2007}.
 
 \paragraph{n2c2} Formerly known as \textit{i2b2} , it is a collection of datasets
-of topics including smoking, obesity, medication, heart disease and psychiatry,
-each with thousands of records.
+of topics including smoking, obesity, medication, and heart disease,
 The dataset requires registration and access request approval, yet is free of cost.
-
-\medskip
-Additionally, there are many other websites dedicated to the publication of open
-access healthcare datasets, for instance:
-
-\paragraph{HealthData.gov} The United States government operates the website HealthData.gov\footnote{\url{https://healthdata.gov}} through the
-\textit{Open Government Initiative} \parencite{Marc2015}, for general purpose
-healthcare-related datasets.
 
 \subsubsection{Dataset Choice}
 
-For the purpose of this report, the \textit{n2c2} dataset was chosen, 
+For the purpose of this report, the \textit{n2c2} dataset was chosen over the
+other sources for its manageable size and ease of use.
+Bigger datasets have the issue of becoming difficult to work with in consumer hardware,
+since the records have to be pre-processed in a extensively to be able to use them.
+Finally, the \textit{n2c2} datasets have the added benefit of being topic-focused,
+which means that each dataset has been constructed with a particular health concern
+or topic in mind.
+From the different datasets contained in the \textit{n2c2} collection,
+the one focusing in heart disease was selected, since heart disease is one of
+the biggest public health concerns globally.
+Additionally, there are several known risk factors for heart disease, which will
+allow validation of the results \parencite{Kannel2002}.
+
+The \textit{n2c2} heart disease dataset contains 1304 records which represent 296
+diabetic patients \parencite{Kumar2015}.
+After a request for access was filed and approved, the dataset was ready to be
+analysed.
 
 
 \subsection{Data Processing Techniques}
 
+\subsubsection{De-identification}
+
 De-identification techniques will not be covered here,
-since all of the data that can be obtained will have been de-identified beforehand.
-After de-identification, one of the biggest challenges with healthcare data is making sense of it.
+as the available datasets have been de-identified beforehand.
+However, for the specific task of de-identification of the dataset in question,
+\textcite{Yang2015} can be consulted (Figure \ref{fig:deid}).
+
+% Kalman Filter Diagram
+\begin{figure}[h]
+\centering
+\scriptsize
+\includegraphics{deid}
+\caption{De-identification Approach by \textcite{Yang2015}}
+\label{fig:deid}
+\end{figure}
 
 \subsubsection{Data Cleaning}
 
@@ -164,6 +192,7 @@ Everything else, such as structure, formatting, and punctuation is discarded \pa
 There are additional measures that can improve the quality of data such as \textit{stopwords} (discarding frequent words) \parencite[327-336]{Mueller2017}, and \textit{term frequency–inverse document frequency} (rescale features by their expected importance);
 as well as ways to improve the \textit{bag-of-words} technique, such as n-grams, stemming and lemmatization \parencite[339,344]{Mueller2017}.
 
+Since patient records, such as the ones contained in the 
 In healthcare, some techniques that might improve the quality of free-text data may include detection of negation and spelling mistakes, abbreviation normalisation, and named entity recognition \parencite{Dalianis2015}.
 
 \subsection{Machine Learning}
@@ -183,8 +212,7 @@ Conversely, in unsupervised learning all data is unlabelled and the model deduce
 Reinforcement learning happens when the model is conditioned externally \parencite[11]{Ibrahim2021}.
 Finally, deep learning involves a series of layers that process the data and feed into one another \parencite[13]{Ibrahim2021}.
 
-\subsection{Predictive Algorithms}
-
+\subsection{Supervised Learning Algorithms}
 
 \textcite{Jothi2015} outlined some of the classification algorithms commonly used in healthcare data analysis, briefly described next. All of them need exclusively labelled data and are thus considered supervised learning algorithms.
 
@@ -212,15 +240,33 @@ Finally, another common approach in healthcare data analysis is Deep Learning, w
 
 \subsection{Training and Testing Approaches}
 
-The training and testing approach chosen when designing the model is of great importance, since it can affect the accuracy of the model.
-\textcite[39]{Consoli2019} suggests using the \(k\)-fold cross-validation approach, in which the dataset is split into \(k\) parts, of which \(k-1\) parts are used to train the model, and the last one is used to test it, rotating the data such that every part is used to test it once. \textcite{Wong2020} suggested 10-fold cross validation to be the best first approach, with 5-fold and 2-fold cross validation only being viable in circumstances where not enough elements exist in some fold (i.e. large-sample conditions are violated). It is worth mentioning \textit{stratified k-fold cross-validation}, in which the data is split such that there are proportional amounts of items of each class in each fold \parencite{Mueller2017}.
+The training and testing strategy of a model can affect its accuracy.
+\textcite[39]{Consoli2019} suggests using the \(k\)-fold cross-validation approach,
+in which the dataset is split into \(k\) parts, of which \(k-1\) parts are used
+to train the model, and one is used to test it, rotating the data such that
+every part is used to test it once.
+\textcite{Wong2020} suggested 10-fold cross validation to be the best first
+approach, with less folds only being viable in small datasets.
+\textit{Stratified k-fold cross-validation}, is a slight variation of this,
+in which the data is split keeping adequate proportions of each class in each fold \parencite{Mueller2017}.
 
 \subsection{Data Visualisation}
 
 The way results are represented is important, since visualisations can make patterns apparent and provide insights that can alter the final decision \parencite{Hendriks2019}.
 Transparency and lack of bias are desirable qualities in a visualisation technique \parencite{Hendriks2019}.
 
+\subsection{Interpreting the Results}
+
+...
+
 \section{Critical Evaluation of the case for or against uptake of such Technology}
+
+Furthermore, some debate exists about the need for strict de-identification, and how it can affect the availability of data.
+\textcite[2]{Shin2018} argues that de-identification can lead to a distortion and loss of detailed data, which can greatly impact the results of a study.
+Likewise, \textcite{Kim2019} revealed that almost half (45.8\%) of all participants in a survey thought that a revision in legislation was necessary to reduce obstacles when using healthcare data.
+However, it is important to remember that big data analytics can still have consequences for individuals.
+Some de-identification methods are vulnerable to correlation attacks, which can identify individuals through indirect identifiers \parencite{Abouelmehdi2018}.
+As \textcite{Abouelmehdi2018} points out, analytics should verify privacy agreements are respected, and sensitive information should remain private.
 
 % PROMPT
 % You will evaluate the benefits or otherwise, including the challenges of applying machine learning algorithms, maintenance and ethical considerations of a data science model for business insight.
@@ -229,7 +275,15 @@ Transparency and lack of bias are desirable qualities in a visualisation techniq
 
 \section{Conclusions and Recommendations}
 
-Data Science has come a long way thanks to the advances in Machine Learning and Artificial Intelligence of the last few decades. The amount of literature that deals with analysis of healthcare data is vast, and covers technical areas such as sourcing, processing, cleaning, machine learning algorithms, deep learning, visualisation, and much more. These body of knowledge, along with current technology and tools make it possible to imagine a future where hospitals, researchers, and scientists harness their full potential. However, this should not cause privacy and consent to be undermined for the sake of research.
+Data Science has advanced exponentially thanks to the advances in Machine
+Learning and Artificial Intelligence of the last decades.
+The literature about data analysis in healthcare is vast, and covers technical
+areas such as sourcing, processing, cleaning, algorithms, deep learning,
+visualisation, and much more.
+This body of knowledge, along with current technology and tools make it
+possible to imagine a future where hospitals, researchers, and scientists
+harness their full potential.
+However, privacy and consent should never be undermined for the sake of research.
 
 % ~150 words
 \pagebreak
