@@ -3,7 +3,7 @@
 % Data Science (CO3722)
 % University of Central Lancashire
 
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,11pt]{article}
 
 % Links
 \usepackage{hyperref}
@@ -61,7 +61,6 @@ McKinsey estimated that data analytics can reduce healthcare expenses by up to
 Data science can be used to process the massive amounts of electronic health
 records that exist, including physician notes, medical records, patient scans,
 and patient sensor data \parencite{Adam2017, Dalianis2015}.
-However, this data is not readily available due to patient privacy.
 Areas in healthcare that could have the most impact include early detection of
 diseases, precision medicine, optimisation of workflows, value-based healthcare,
 infection prevention and control, and clinical research \parencite[9]{Consoli2019}.
@@ -75,19 +74,13 @@ burden of £7.06 billion in the UK, the highest for any disease \parencite{Liu20
 This report will review in detail the process of data analysis, from locating a
 data source, processing the data, and finally visualising and interpreting the results.
 
-\section{Data Science for Healthcare}
+\section{Discussion of Data Science for Healthcare}
 
 % PROMPT
 % This section will relate specifically to your business and Use Case and their approach or potential application for the use of data science.
 % This will cover the challenge of acquiring or using specific data sources for your Use Case, approaches to data processing, description of proposed machine learning  algorithms and their design, opportunities for data visualisation and the methods for analysing/interpreting the data required to gain business competitive advantage.
 
 \subsection{Challenges}
-
-There exist several limitations to the data freely available for analysis.
-As \textcite[2]{Dalianis2015} points out, this is mainly due to sensitive data
-in medical records.
-A survey found that the two biggest perceived obstacles towards obtaining
-healthcare data were legal issues and data standardization \parencite{Kim2019}.
 
 \subsubsection{Privacy Concerns}
 
@@ -117,29 +110,9 @@ Therefore significant preprocessing will be necessary before analysing the data.
 
 \subsubsection{Healthcare Data Sources}
 
-A selection of anonymised datasets that have been widely used in research due to
-their high availability and relaxed access policy are listed below \parencite{Dalianis2015}.
-
-\paragraph{MIMIC-II} A collection of data from ICU patients,
-spanning 7 years and ~27,000 patient admissions.
-The dataset contains patient demographics, intravenous medication drip rates,
-laboratory test results, and physiological waveforms recorded at bedside.
-The dataset can be accessed after registration free of charge \parencite{Lee2011}.
-
-\paragraph{MIMIC-III} A successor to \textit{MIMIC-II}, it spans more than a
-decade and \textgreater 50k patient admissions.
-It contains demographics, notes and reports, tests, along with bedside monitoring data.
-As its predecessor, access merely requires registration \parencite{Johnson2016}.
-
-\paragraph{THIN} It is an ongoing dataset which begins in 1994, and represents
-6\% of the UK population.
-It contains records from general practices.
-The dataset can only be accessed by those with special authorisation,
-such as research organisations \parencite{Lewis2007}.
-
-\paragraph{n2c2} Formerly known as \textit{i2b2} , it is a collection of datasets
-of topics including smoking, obesity, medication, and heart disease,
-The dataset requires registration and access request approval, yet is free of cost.
+A selection of anonymised datasets that are widely used in research due to
+their relaxed access policy are listed in the Appendix
+\ref{appendix:sources} \parencite{Dalianis2015}.
 
 \subsubsection{Dataset Choice}
 
@@ -205,31 +178,26 @@ Other techniques include \textit{stopwords} (discarding frequent words),
 and \textit{term frequency–inverse document frequency}
 (rescale features by their expected importance), n-grams,
 stemming, and lemmatization, among others \parencite[327,344]{Mueller2017}.
+In healthcare, some techniques that might improve the quality of free-text data
+may include detection of negation and spelling mistakes, abbreviation normalisation,
+and named entity recognition \parencite{Dalianis2015}.
 
-In healthcare, some techniques that might improve the quality of free-text data may include detection of negation and spelling mistakes, abbreviation normalisation, and named entity recognition \parencite{Dalianis2015}.
+\subsubsection{Dataset Processing}
 
-\subsection{Machine Learning}
-
-Machine learning algorithms can be classified by how they are trained:
-
-\begin{itemize}
- \item Supervised Learning
- \item Unsupervised Learning
- \item Semisupervised Learning
- \item Reinforcement Learning
- \item Deep Learning
-\end{itemize}
-
-Supervised learning happens when the training data is labelled,
-i.e. has been classified beforehand.
-Unsupervised learning uses unlabelled data, which the model deduces a structure from.
-In semisupervised learning, some data is labelled and other unlabelled.
-Reinforcement learning conditions the model externally through feedback
-\parencite[11]{Ibrahim2021}.
-Lastly, deep learning involves a series of layers that process the data in series \parencite[13]{Ibrahim2021}.
+In order to be able to apply machine learning algorithms to the \textit{n2c2}
+dataset, the first step is to annotate the patient records.
+This means processing the text and extracting the relevant features.
+For instance, when the word \textquote{diabetes} occurs in a patient record,
+the system should correctly identify this feature and label the record as such.
+The \textit{n2c2} dataset provides pre-annotated training and test data.
+However, some approaches work best with custom annotations, such as
+\textcite{Roberts2014}, which manually annotated the heart disease dataset to
+better suit their model design.
 
 \subsection{Supervised Learning Algorithms}
 
+A summary of different Machine Learning learning methods can be consulted in the
+Appendix \ref{appendix:ml}.
 \textcite{Jothi2015} outlined some of the supervised learning algorithms
 commonly used in healthcare data analysis, briefly described next.
 
@@ -259,6 +227,21 @@ Some deep learning architectures are:
  \item Deep auto-encoders
 \end{itemize}
 
+\subsubsection{Dataset Algorithms}
+
+When considering the \textit{n2c2} dataset, it is necessary to ask the question
+of which algorithms perform better for heart disease detection.
+\textcite{Khan2019} surveyed 35 journal articles and found that the three most
+popular techniques when classifying heart disease datasets are Support Vector
+Machines, Neural Networks, and combined approaches.
+However, popularity alone cannot justify the algorithm choice.
+\textcite{Stubbs2015} reviewed the original most effective approaches to
+classification of the heart disease \textit{n2c2} dataset.
+All of the three most performant approaches (in terms of precision and recall)
+used Support Vector Machines in combination with other methods such as manual
+rules.
+This findings would point towards a preference in using Support Vector Machines
+as the main algorithm when analysing the dataset along with handcrafted rules.
 
 \subsection{Training and Testing Approaches}
 
@@ -271,28 +254,102 @@ every part is used to test it once.
 approach, with less folds only being viable in small datasets.
 \textit{Stratified k-fold cross-validation}, is a slight variation of this,
 in which the data is split keeping adequate proportions of each class in each fold \parencite{Mueller2017}.
+Since in the \textit{n2c2} dataset there are more than a thousand records,
+10-fold cross validation is possible and recommended.
 
 \subsection{Data Visualisation}
 
-The way results are represented is important, since visualisations can make patterns apparent and provide insights that can alter the final decision \parencite{Hendriks2019}.
-Transparency and lack of bias are desirable qualities in a visualisation technique \parencite{Hendriks2019}.
+The way results are represented is important, since visualisations can make
+patterns apparent and provide insights that can alter the final decision
+\parencite{Hendriks2019}.
+Transparency and lack of bias are desirable qualities in a visualisation
+technique \parencite{Hendriks2019}.
+Graphical representation can reveal features such as unusual distributions,
+patterns, clusters, gaps, outliers, and much more \parencite{Unwin2020}.
+Visualisation techniques can come in forms such as scatter plots, line graphs,
+bar charts, histograms, and heat maps \parencite{Sadiku2016}.
+Visualisation can be of help when analysing the heart disease dataset.
+For instance, after annotation, bar charts can show the number of times certain
+features appear in the dataset.
+Furthermore, a scatter plot can be created to show the relation between certain
+risk factors (such as age, cholesterol levels, and blood pressure) and the
+likelihood of developing a heart condition.
 
-\subsection{Interpreting the Results}
+\subsection{Model Interpretation}
 
-...
+In order to be useful in practice, a model in healthcare needs to be interpretable
+by medical professionals, since they need to be able to make decisions based on
+the behaviour of the model.
+Interpretability is determined by the degree to which of humans
+are able to understand its decisions and rationale.
+One of the disadvantages of many machine learning models is their lack of
+transparency, which makes interpretation a difficult task \parencite{Stiglic2020}.
+Good interpretability results in a model that is fair, unbiased, privacy-oriented,
+trustworthy, and reliable, values that are of upmost importance in healthcare \parencite{DoshiVelez2017}.
 
-\section{Critical Evaluation of the case for or against uptake of such Technology}
+There are multiple criteria used to describe interpretability methods, based on
+factors like the stage at which they are implemented, or whether they are
+model-agnostic or model-specific.
+Interpretability can be implemented at the data level (\textit{pre-model}),
+at the model level (\textit{in-model}), or after the fact (\textit{post-model}).
+Since it is of high priority in healthcare, interpretability should be part of
+the model itself whenever possible (\textit{in-model}).
+This would provide confidence that any decisions taken can be traced back and
+explained to the patient, for example.
 
-Furthermore, some debate exists about the need for strict de-identification, and how it can affect the availability of data.
-\textcite[2]{Shin2018} argues that de-identification can lead to a distortion and loss of detailed data, which can greatly impact the results of a study.
-Likewise, \textcite{Kim2019} revealed that almost half (45.8\%) of all participants in a survey thought that a revision in legislation was necessary to reduce obstacles when using healthcare data.
-However, it is important to remember that big data analytics can still have consequences for individuals.
-Some de-identification methods are vulnerable to correlation attacks, which can identify individuals through indirect identifiers \parencite{Abouelmehdi2018}.
-As \textcite{Abouelmehdi2018} points out, analytics should verify privacy agreements are respected, and sensitive information should remain private.
+
+\section{Evaluation of Data Science in Healthcare}
 
 % PROMPT
-% You will evaluate the benefits or otherwise, including the challenges of applying machine learning algorithms, maintenance and ethical considerations of a data science model for business insight.
+% You will evaluate the benefits or otherwise, including the challenges of
+% applying machine learning algorithms, maintenance and ethical considerations
+% of a data science model for business insight.
 % ~400 words
+
+\subsection{Impact of Data Science in Healthcare}
+
+
+Data science is already being used in healthcare on a large scale, in areas from
+administration to clinical decision support.
+Advances that would otherwise be infeasible are now commonplace thanks to data
+analysis.
+However, data analytics still has many challenges and areas of opportunity.
+For instance, \parencite{PeifferSmadja2020} found that ML clinical decision
+support systems lacked quality and performance in clinical settings, and
+highlighted opportunities such as data quantity and quality, interpretability,
+and availability.
+
+
+\subsection{Ethical Concerns}
+
+More so than with other applications of data science, healthcare demands strict
+ethical considerations and rules.
+Many defend the position that data science in healthcare should be
+heavily controlled by a solid and justified ethical framework \parencite{Baeroee2020}.
+Failure to address ethical guidelines can result in biases in the model,
+which could show up as unfair treatment of patients based on sex, race, or other.
+These biases usually appear as a cause of biased training data.
+Bias can occur when populations are underrepresented in the training data,
+or when an existing systematic bias is replicated in the model \parencite{Chen2021}.
+In contemporary applications of machine learning, bias is not difficult to find.
+This is specially concerning with applications that can affect human life 
+\parencite{Yapo2018}.
+
+\subsection{Patient Privacy}
+
+Some debate exists about the need for strict de-identification,
+and how it can affect the availability of data.
+\textcite[2]{Shin2018} argues that de-identification can lead to a distortion
+and loss of detailed data, which can greatly impact the results of a study.
+Likewise, \textcite{Kim2019} revealed that almost half (45.8\%) of all
+participants in a survey thought that a revision in legislation was necessary
+to reduce obstacles in healthcare data analysis.
+However, it is important to remember that big data analytics can still have
+consequences for individuals.
+Some de-identification methods are vulnerable to correlation attacks, which can
+identify individuals through indirect identifiers \parencite{Abouelmehdi2018}.
+As \textcite{Abouelmehdi2018} points out, privacy agreements must be respected,
+and sensitive information should remain private.
 
 
 \section{Conclusions and Recommendations}
@@ -305,10 +362,60 @@ visualisation, and much more.
 This body of knowledge, along with current technology and tools make it
 possible to imagine a future where hospitals, researchers, and scientists
 harness their full potential.
-However, privacy and consent should never be undermined for the sake of research.
+However, privacy and consent should never be undermined for the sake of research,
+and ethics should be a top priority when designing a machine learning approach.
+
+\bigskip
+Word count: 2200
 
 % ~150 words
 \pagebreak
 \printbibliography
+
+\pagebreak
+\appendix
+
+\section{Dataset Sources}\label{appendix:sources}
+
+\paragraph{MIMIC-II} A collection of data from ICU patients,
+spanning 7 years and ~27,000 patient admissions.
+The dataset contains patient demographics, intravenous medication drip rates,
+laboratory test results, and physiological waveforms recorded at bedside.
+The dataset can be accessed after registration free of charge \parencite{Lee2011}.
+
+\paragraph{MIMIC-III} A successor to \textit{MIMIC-II}, it spans more than a
+decade and \textgreater 50k patient admissions.
+It contains demographics, notes and reports, tests, along with bedside monitoring data.
+As its predecessor, access merely requires registration \parencite{Johnson2016}.
+
+\paragraph{THIN} It is an ongoing dataset which begins in 1994, and represents
+6\% of the UK population.
+It contains records from general practices.
+The dataset can only be accessed by those with special authorisation,
+such as research organisations \parencite{Lewis2007}.
+
+\paragraph{n2c2} Formerly known as \textit{i2b2} , it is a collection of datasets
+of topics including smoking, obesity, medication, and heart disease,
+The dataset requires registration and access request approval, yet is free of cost.
+
+\section{Machine Learning}\label{appendix:ml}
+
+Machine learning algorithms can be classified by how they are trained:
+
+\begin{itemize}
+ \item Supervised Learning
+ \item Unsupervised Learning
+ \item Semisupervised Learning
+ \item Reinforcement Learning
+ \item Deep Learning
+\end{itemize}
+
+Supervised learning happens when the training data is labelled,
+i.e. has been classified beforehand.
+Unsupervised learning uses unlabelled data, which the model deduces a structure from.
+In semisupervised learning, some data is labelled and other unlabelled.
+Reinforcement learning conditions the model externally through feedback
+\parencite[11]{Ibrahim2021}.
+Lastly, deep learning involves a series of layers that process the data in series \parencite[13]{Ibrahim2021}.
 
 \end{document}
