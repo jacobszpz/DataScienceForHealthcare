@@ -1,4 +1,4 @@
-# Research Report: Data Science for Healthcare
+# Research Report: Discussion of Data Science for Healthcare to Identify Risk Factors
 #### (Data Science at UCLan)
 ![GPLv2][license-badge]
 
@@ -16,7 +16,7 @@
 
 For the complete brief, click [here][brief].
 
-The area of business chosen was the **healthcare** industry and the specific use case is the **prediction of diseases**.
+The area of business chosen was the **healthcare** industry and the specific use case is the **identification of risk factors for heart disease**.
 
 
 
@@ -46,7 +46,10 @@ $ pdflatex -shell-escape report.tex
 
 ```bash
 # Conversion is not perfect and still requires tweaks
-$ pandoc report.tex -f latex -t docx -o report.docx --bibliography=references.bib
+$ pandoc report.tex -f latex -t docx -o report.docx --bibliography=references.bib \
+--default-image-extension=png -s \
+--csl=https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+
 ```
 
 
